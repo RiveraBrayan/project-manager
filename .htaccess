@@ -1,0 +1,7 @@
+RewriteEngine On
+RewriteBase /portafolio/project-manager/
+
+# Redirigir todas las solicitudes a index.php excepto si ya es un archivo o directorio existente
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+)$ index.php?page=$1 [QSA,L] 
