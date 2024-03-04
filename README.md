@@ -1,5 +1,6 @@
-Our project is a robust project management system developed using PHP, following the Model-View-Controller (MVC) architectural pattern, and powered by MySQL for data storage. 
-This comprehensive solution is designed to streamline project management tasks, enhance collaboration among team members, and provide efficient tools for planning, monitoring, and reporting on project progress.
+Project Description:
+
+Our project is a robust project management system developed using PHP, following the Model-View-Controller (MVC) architectural pattern, and powered by MySQL for data storage. This comprehensive solution is designed to streamline project management tasks, enhance collaboration among team members, and provide efficient tools for planning, monitoring, and reporting on project progress.
 
 Key Features:
 
@@ -17,4 +18,8 @@ Reporting and Analytics: Gain insights into project performance through detailed
 
 Customization: Tailor the system to your specific project needs. Customize workflows, data fields, and project settings to align with your organization's unique requirements.
 
-Whether you're managing small or large-scale projects, our PHP-based project management system provides a scalable and adaptable solution to meet your project management needs.
+Material Dashboard Template: We have seamlessly integrated the project with the Material Dashboard template from Creative Tim. This template, available at Creative Tim, enhances the frontend with a modern and visually appealing design, providing a polished and responsive user interface.
+
+Whether you're managing small or large-scale projects, our PHP-based project management system, coupled with the Material Dashboard template, provides a scalable and adaptable solution to meet your project management needs.
+
+Feel free to modify or expand upon this description based on the specific features and functionalities of your project.

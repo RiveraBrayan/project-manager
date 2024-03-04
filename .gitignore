@@ -1,5 +1,6 @@
 #template
 /template
+/views/archives
 
 #archives
 *indexs.html

@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS usuarios (
 );
 
 -- Crear la tabla de paginas
-CREATE TABLE paginas (
+CREATE TABLE IF NOT EXISTS paginas (
     id_pagina INT AUTO_INCREMENT PRIMARY KEY,   -- Identificador único de la página, autoincremental
     orden_pagina INT,                           -- Orden de la página
     nombre_pagina VARCHAR(255),                 -- Nombre de la página
@@ -36,7 +36,7 @@ CREATE TABLE paginas (
 );
 
 -- Crear tabla documentos
-CREATE TABLE documents (
+CREATE TABLE IF NOT EXISTS documents (
     id_document INT AUTO_INCREMENT PRIMARY KEY,                 -- Identificador único y autoincrementable para cada documento.
     name_document VARCHAR(255),                                 -- Nombre del documento.
     route_document VARCHAR(255),                                -- Ruta del documento.

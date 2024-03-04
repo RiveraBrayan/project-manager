@@ -1,11 +1,10 @@
 <?php
-	require_once "models/adminModel.php";
+	require_once "models/loginModel.php";
 
-	class AdminController{
+	class LoginController{
 
 		public function login(){
-
-            session_start();
+            // session_start();
             session_destroy();
             require_once('./views/pages/login/login.php');
 		}
@@ -16,20 +15,24 @@
 		        session_start();
 
                 $fields = array(
-                    "username_usuario" => $_POST['txtUsername'],
-                    "password_usuario" => isset($_POST['txtPassword']) ? $_POST['txtPassword'] : ''
+                    "username_user" => $_POST['txtUsername'],
+                    "password_user" => isset($_POST['txtPassword']) ? $_POST['txtPassword'] : ''
                 );
 
-                $response = AdminModel::loginModel($fields);
+                $response = LoginModel::login($fields);
 
                 if($response['status'] == 202){
                     $_SESSION['userData'] = $response;
                     header('Location: home');
+                }else{
+                    echo '<div class="alert alert-danger alert-dismissible text-white" role="alert">
+                    <span class="text-sm">Wrong User or Password.</span>
+                    </div>';
                 }
             }
         }
     
-        public function cerrarSesion() {
+        public function signOut() {
             session_start();
             session_destroy();
             header('Location: login');

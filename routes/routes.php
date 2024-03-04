@@ -7,7 +7,8 @@ $page = $_GET['page'];
 /* This code is checking if the variable $page is not empty. If it is not empty, it performs the
 following actions: */
 if (!empty($page)) {
-		
+        session_start();
+
         $db = DBConexion::connection();
 
         $sql = "SELECT urlpagina_pagina FROM paginas";
@@ -17,9 +18,15 @@ if (!empty($page)) {
 		$data = array();
 
         $data['login'] = array(
-            'model' => 'AdminModel', 
+            'model' => 'LoginModel', 
             'view' => 'login',
-            'controller' => 'AdminController',
+            'controller' => 'LoginController',
+        );
+
+        $data['sign-up'] = array(
+            'model' => 'LoginModel', 
+            'view' => 'singup',
+            'controller' => 'LoginController',
         );
 
         $data['profile'] = array(
@@ -29,10 +36,36 @@ if (!empty($page)) {
         );
 
         $data['404'] = array(
-            'model' => 'AdminModel', 
+            'model' => 'TemplateModel', 
             'view' => 'Error404',
-            'controller' => 'AdminController',
+            'controller' => 'TemplateController',
         );
+
+        $data['exit'] = array(
+            'model' => 'TemplateModel', 
+            'view' => 'logout',
+            'controller' => 'TemplateController',
+        );
+
+        if(isset($_SESSION['userData']['su_user'])){
+            $data['users'] = array(
+                'model' => 'UsersModel', 
+                'view' => 'users',
+                'controller' => 'UsersController',
+            );
+
+            $data['roles'] = array(
+                'model' => 'RolesModel', 
+                'view' => 'roles',
+                'controller' => 'RolesController',
+            );
+
+            $data['pages'] = array(
+                'model' => 'PagesModel', 
+                'view' => 'pages',
+                'controller' => 'PagesController',
+            );
+        }
 
         /* This code is responsible for dynamically mapping the requested page to its corresponding
         model, view, and controller. */
@@ -63,7 +96,7 @@ if (!empty($page)) {
             $objeto = new $controller();
             $objeto->$view();
         }else{
-                header('Location: 404');
+                // header('Location: 404');
         }
 } else {
 	header('Location: login');
