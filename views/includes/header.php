@@ -60,30 +60,30 @@ $arrayNavbar = $InfoUser->MenuSidebar();
         <?php
           if(isset($_SESSION['userData']['su_user'])){
             $usersArray = array(
-              'id_pagina'=> '',
-              'nombre_pagina'=> 'Users',
-              'urlpagina_pagina'=> 'users',
-              'clase_pagina'=> 'fas fa-users',
-              'id_parent_pagina'=> '',
-              'catalogo_pagina'=> '',
+              'id_page'=> '',
+              'name_page'=> 'Users',
+              'urlpage_page'=> 'users',
+              'clase_page'=> 'fas fa-users',
+              'id_parent_page'=> '',
+              'catalogue_page'=> '',
             );
     
             $rolesArray = array(
-              'id_pagina'=> '',
-              'nombre_pagina'=> 'Roles',
-              'urlpagina_pagina'=> 'roles',
-              'clase_pagina'=> 'fas fa-user-tag',
-              'id_parent_pagina'=> '',
-              'catalogo_pagina'=> '',
+              'id_page'=> '',
+              'name_page'=> 'Roles',
+              'urlpage_page'=> 'roles',
+              'clase_page'=> 'fas fa-user-tag',
+              'id_parent_page'=> '',
+              'catalogue_page'=> '',
             );
     
             $pagesArray = array(
-              'id_pagina'=> '',
-              'nombre_pagina'=> 'Pages',
-              'urlpagina_pagina'=> 'pages',
-              'clase_pagina'=> 'fas fa-bars',
-              'id_parent_pagina'=> '',
-              'catalogo_pagina'=> '',
+              'id_page'=> '',
+              'name_page'=> 'Pages',
+              'urlpage_page'=> 'pages',
+              'clase_page'=> 'fas fa-bars',
+              'id_parent_page'=> '',
+              'catalogue_page'=> '',
             );
     
             $arrayNavbar[] = $usersArray;
@@ -91,31 +91,31 @@ $arrayNavbar = $InfoUser->MenuSidebar();
             $arrayNavbar[] = $pagesArray;
           }
           foreach ($arrayNavbar as $pagina) {
-            $idPagina = $pagina['id_pagina'];
-            $nombrePagina = $pagina['nombre_pagina'];
-            $urlPagina = $pagina['urlpagina_pagina'];
-            $clasesPagina = $pagina['clase_pagina'];
-            $idParentPagina = $pagina['id_parent_pagina'];
-            $catalogoPagina = $pagina['catalogo_pagina'];
+            $id_page = $pagina['id_page'];
+            $name_page = $pagina['name_page'];
+            $urlpage_page = $pagina['urlpage_page'];
+            $clase_page = $pagina['clase_page'];
+            $id_parent_page = $pagina['id_parent_page'];
+            $catalogue_page = $pagina['catalogue_page'];
 
-            if ($_GET['page'] == $urlPagina) {
+            if ($_GET['page'] == $urlpage_page) {
               $active = 'active';
             } else {
               $active = '';
             }
 
-            if($nombrePagina == 'Users'){
+            if($name_page == 'Users'){
               echo '<li class="nav-item mt-3">
                     <h6 class="ps-4 ms-2 text-uppercase text-xs text-white font-weight-bolder opacity-8">Settings</h6>
                   </li>';
             }
 
             echo '<li class="nav-item">';
-              echo '<a class="nav-link text-white ' . $active . '" href="' . $urlPagina . '">';
+              echo '<a class="nav-link text-white ' . $active . '" href="' . $urlpage_page . '">';
                 echo '<div class="text-white text-center me-2 d-flex align-items-center justify-content-center">';
-                  echo '<i class="' . $clasesPagina . '"></i>';
+                  echo '<i class="' . $clase_page . '"></i>';
                 echo '</div>';
-                echo '<span class="nav-link-text ms-1">' . $nombrePagina . '</span>';
+                echo '<span class="nav-link-text ms-1">' . $name_page . '</span>';
               echo '</a>';
             echo '</li>';
           }

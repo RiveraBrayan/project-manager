@@ -5,24 +5,20 @@
 
 		static public function MenuSidebar()
 		{
-			 // Utiliza la función connection de la clase DBConexion
 			 $db = DBConexion::connection();
 	
-			 // Consulta para obtener la información del menu
-			 $sql = "SELECT * FROM paginas WhERE id_parent_pagina = 0 ORDER BY orden_pagina";
+			 $sql = "SELECT * FROM pages WHERE id_parent_page = 0 AND status_page = 1 ORDER BY order_page";
 			 $result = $db->query($sql);
 
-			 $sqlSubMenu = "SELECT * FROM paginas WhERE id_parent_pagina != 0 ORDER BY orden_pagina";
+			 $sqlSubMenu = "SELECT * FROM pages WHERE id_parent_page != 0 AND status_page = 1 ORDER BY order_page";
 			 $resultSubMenu = $db->query($sqlSubMenu);
+
 	
 			 if ($result->num_rows > 0) {
-				 // Inicializar un array para almacenar los resultados
 				$data = array();
 				$datasubMenu = array();
 	
-				// Procesar los resultados
 				if ($result->num_rows > 0) {
-					// Almacenar cada fila en el array
 					while ($row = $result->fetch_assoc()) {
 						$data[] = $row;
 					}
@@ -37,7 +33,6 @@
 					echo "0 results";
 				}
 			 } else {
-				 // Usuario no encontrado
 				 echo "Error.";
 			 }
 		}

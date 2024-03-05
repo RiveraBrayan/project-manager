@@ -1,34 +1,33 @@
-roles = function() {
+pages = function() {
 
     return {
 
-      tableRoles: function(){
+      tablePages: function(){
 
-        let action = 'tableRoles';
-        let status = $('#txtStatusRol').val();
+        let action = 'tablePages';
         
-        var url = `controllers/rolesController.php?action=${action}&status=${status}`;
+        var url = `controllers/pagesController.php?action=${action}`;
         
         var columns = [
           { data: 'counter' },
-          { data: 'name_rol' },
-          { data: 'status_rol' },
+          { data: 'name_page' },
+          { data: 'clase_page' },
           { data: 'actions' }
         ];
         
-        table = `tableRoles`;
+        table = `tablePages`;
         
         execDatatable(table, url, columns);
       },
 
-      infoRoles: function(){
+      infoPages: function(){
 
         var data = new FormData();
-        data.append("action", 'infoRoles');
+        data.append("action", 'infoPages');
         data.append("id", $('#txtId').val());
   
         $.ajax({
-          url: 'controllers/rolesController.php',
+          url: 'controllers/pagesController.php',
           method: 'POST',
           processData: false,
           contentType: false,
@@ -38,9 +37,11 @@ roles = function() {
             if(response.status == 202){
               let data = response.JsonData;
   
-              $('#txtRol').val(data.name_rol);
+              $('#txtName').val(data.name_page);
+              $('#txtUrl').val(data.urlpage_page);
+              $('#txtIcon').val(data.clase_page);
   
-              if(data.status_rol == 1){
+              if(data.status_page == 1){
                 var miCheckbox = document.getElementById('checkboxActive');
                 miCheckbox.checked = true;
               }
@@ -86,7 +87,7 @@ roles = function() {
                 text: response.message,
                 type: 'success'
                 }).then(function() {
-                  window.location = 'roles';
+                  window.location = 'pages';
                 })
             }else{
               Swal.fire({
@@ -109,23 +110,23 @@ roles = function() {
 }();
   
 $(document).ready(function(){
-  roles.init();
+  pages.init();
 });
 
   
-if($("#tableRoles").length > 0){
-  roles.tableRoles();
+if($("#tablePages").length > 0){
+  pages.tablePages();
 }
 
 $('.searchInfo').on( 'click', function (){
-  roles.tableRoles();
+  pages.tablePages();
 });
 
 if($("#txtId").length > 0){
-  roles.infoRoles();
-  roles.showInputs();
+  pages.infoPages();
+  pages.showInputs();
 }
 
 $('.saveSubmit').on( 'click', function (){
-  roles.saveInfo();
+  pages.saveInfo();
 });

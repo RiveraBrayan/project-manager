@@ -11,73 +11,25 @@ if (!empty($page)) {
 
         $db = DBConexion::connection();
 
-        $sql = "SELECT urlpagina_pagina FROM paginas";
+        $sql = "SELECT urlpage_page FROM pages";
         
         $result = $db->query($sql);
 
 		$data = array();
 
-        $data['login'] = array(
-            'model' => 'LoginModel', 
-            'view' => 'login',
-            'controller' => 'LoginController',
-        );
-
-        $data['sign-up'] = array(
-            'model' => 'LoginModel', 
-            'view' => 'singup',
-            'controller' => 'LoginController',
-        );
-
-        $data['profile'] = array(
-            'model' => 'ProfileModel', 
-            'view' => 'profile',
-            'controller' => 'ProfileController',
-        );
-
-        $data['404'] = array(
-            'model' => 'TemplateModel', 
-            'view' => 'Error404',
-            'controller' => 'TemplateController',
-        );
-
-        $data['exit'] = array(
-            'model' => 'TemplateModel', 
-            'view' => 'logout',
-            'controller' => 'TemplateController',
-        );
-
-        if(isset($_SESSION['userData']['su_user'])){
-            $data['users'] = array(
-                'model' => 'UsersModel', 
-                'view' => 'users',
-                'controller' => 'UsersController',
-            );
-
-            $data['roles'] = array(
-                'model' => 'RolesModel', 
-                'view' => 'roles',
-                'controller' => 'RolesController',
-            );
-
-            $data['pages'] = array(
-                'model' => 'PagesModel', 
-                'view' => 'pages',
-                'controller' => 'PagesController',
-            );
-        }
+        require_once 'basicRoutes.php';
 
         /* This code is responsible for dynamically mapping the requested page to its corresponding
         model, view, and controller. */
         if ($result->num_rows > 0) {
             foreach ($result as $row) {
 
-                $urlpagina_pagina = $row["urlpagina_pagina"]; 
+                $urlpage_page = $row["urlpage_page"]; 
 
-                $data[$urlpagina_pagina] = array(
-                    'model' => ucfirst($urlpagina_pagina).'Model', 
-                    'view' => $urlpagina_pagina,
-                    'controller' => ucfirst($urlpagina_pagina).'Controller',
+                $data[$urlpage_page] = array(
+                    'model' => ucfirst($urlpage_page).'Model', 
+                    'view' => $urlpage_page,
+                    'controller' => ucfirst($urlpage_page).'Controller',
                 );
             }
         }
