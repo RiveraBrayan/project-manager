@@ -1,3 +1,9 @@
+<style>
+    td {
+        text-align: center !important;
+    } 
+</style>
+
 <div class="row">
     <div class="col-md-3">
         <div class="input-group input-group-static mb-4">

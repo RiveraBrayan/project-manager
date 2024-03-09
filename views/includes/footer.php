@@ -24,12 +24,16 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 <script src="<?php echo $base_path; ?>/assets/customs/dataTables/dataTables.js?v=<?php echo rand() ?>"></script>
+<script src="<?php echo $base_path; ?>/assets/customs/sweetAlerts/sweetAlerts.js?v=<?php echo rand() ?>"></script>
 <script src="<?php echo $base_path; ?>/assets/js/dataTables.min.js"></script>
 <script src="<?php echo $base_path; ?>/assets/js/core/popper.min.js"></script>
 <script src="<?php echo $base_path; ?>/assets/js/core/bootstrap.min.js"></script>
 <script src="<?php echo $base_path; ?>/assets/js/plugins/perfect-scrollbar.min.js"></script>
 <script src="<?php echo $base_path; ?>/assets/js/plugins/smooth-scrollbar.min.js"></script>
 <script src="<?php echo $base_path; ?>/assets/customs/template/template.js?v=<?php echo rand() ?>"></script>
+<script>
+  template.usersAccess('<?php echo $_GET['page'] ?>', '<?php echo $_SESSION['userData']['id_user'] ?>', '<?php echo $_SESSION['userData']['su_user'] ?>');
+</script>
 <?php
 if (isset($_GET['page'])) {
   echo '<script src="views/assets/customs/' . $_GET['page'] . '/' . $_GET['page'] . '.js?v=' . rand() . '"></script>';

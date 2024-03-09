@@ -1,7 +1,7 @@
 <?php
 
-    if(isset($_GET['id']) && $_GET['id'] != ''){
-        $id_user = $_GET['id'];
+    if(isset($_GET['edition']) && $_GET['edition'] != ''){
+        $id_user = $_GET['edition'];
         $tittle = "Edit User Info";
 
     }else{
@@ -67,10 +67,17 @@
                 </div>
             </div>
 
+            <div class="col-md-6">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="checkboxSuperSu">
+                    <label class="form-check-label" for="checkboxSuperSu">Is SuperUs?</label>
+                </div>
+            </div>
+
             <div class="col-md-6" id="inputCheckbox" style="display:none">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="checkbocActive">
-                    <label class="form-check-label" for="checkbocActive">Is Active?</label>
+                    <input class="form-check-input" type="checkbox" id="checkboxActive">
+                    <label class="form-check-label" for="checkboxActive">Is Active?</label>
                 </div>
             </div>
 

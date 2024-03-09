@@ -17,38 +17,42 @@ if (!empty($page)) {
 
 		$data = array();
 
-        require_once 'basicRoutes.php';
+        require_once 'allowAccess.php';
 
-        /* This code is responsible for dynamically mapping the requested page to its corresponding
-        model, view, and controller. */
-        if ($result->num_rows > 0) {
-            foreach ($result as $row) {
-
-                $urlpage_page = $row["urlpage_page"]; 
-
-                $data[$urlpage_page] = array(
-                    'model' => ucfirst($urlpage_page).'Model', 
-                    'view' => $urlpage_page,
-                    'controller' => ucfirst($urlpage_page).'Controller',
-                );
-            }
-        }
+        if($allowAccess){
+            /* This code is responsible for dynamically mapping the requested page to its corresponding
+            model, view, and controller. */
+            if ($result->num_rows > 0) {
+                foreach ($result as $row) {
     
-        foreach($data as $key => $components) {
-            if ($page == $key) {
-                $model = $components['model'];
-                $view = $components['view'];
-                $controller = $components['controller'];
-                break;
+                    $urlpage_page = $row["urlpage_page"]; 
+    
+                    $data[$urlpage_page] = array(
+                        'model' => ucfirst($urlpage_page).'Model', 
+                        'view' => $urlpage_page,
+                        'controller' => ucfirst($urlpage_page).'Controller',
+                    );
+                }
             }
-        }
         
-        if (file_exists('controllers/'.$controller.'.php')) {
-            require_once 'controllers/'.$controller.'.php';
-            $objeto = new $controller();
-            $objeto->$view();
+            foreach($data as $key => $components) {
+                if ($page == $key) {
+                    $model = $components['model'];
+                    $view = $components['view'];
+                    $controller = $components['controller'];
+                    break;
+                }
+            }
+            
+            if (file_exists('controllers/'.$controller.'.php')) {
+                require_once 'controllers/'.$controller.'.php';
+                $objeto = new $controller();
+                $objeto->$view();
+            }else{
+                    // header('Location: 404');
+            }
         }else{
-                // header('Location: 404');
+            include'./views/pages/forbidden/forbidden.php';
         }
 } else {
 	header('Location: login');

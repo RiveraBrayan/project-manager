@@ -22,6 +22,7 @@ $arrayNavbar = $InfoUser->MenuSidebar();
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900|Roboto+Slab:400,700" />
   <!-- Nucleo Icons -->
   <link href="<?php echo $base_path; ?>/assets/css/nucleo-icons.css" rel="stylesheet" />
+  <link href="<?php echo $base_path; ?>/assets/css/dataTable.css" rel="stylesheet" />
   <link href="<?php echo $base_path; ?>/assets/css/nucleo-svg.css" rel="stylesheet" />
   <link href="<?php echo $base_path; ?>/assets/css/dataTables.dataTables.min.css" rel="stylesheet" />
   <!-- Font Awesome Icons -->

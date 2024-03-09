@@ -25,7 +25,14 @@
                 </div>
             </div>
 
-            <div class="col-md-6" id="inputCheckbox" style="display:none;">
+            <div class="col-md-3">
+                <div class="form-check form-switch" style="margin-top: 5% !important;">
+                    <input class="form-check-input" type="checkbox" id="checkboxPermanent">
+                    <label class="form-check-label" for="checkboxPermanent">Permanent</label>
+                </div>
+            </div>
+
+            <div class="col-md-3" id="inputCheckbox" style="display:none;">
                 <div class="form-check form-switch" style="margin-top: 5% !important;">
                     <input class="form-check-input" type="checkbox" id="checkboxActive">
                     <label class="form-check-label" for="checkboxActive">Is Active?</label>

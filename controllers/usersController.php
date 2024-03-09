@@ -65,6 +65,19 @@
                   echo json_encode($data);
             }
 
+            public function rolesTable(){
+
+                  $id_user = isset($_GET["id_user"]) ? $_GET["id_user"] : '';
+
+                  $fields = array(
+                        "id_user" => $id_user,
+                  );
+                  
+                  $data = UsersModel::rolesTable($fields);
+
+                  echo json_encode($data);
+            }
+
             public function usersInfo(){
                   $id_user = $_POST['id_user'];
 
@@ -81,7 +94,8 @@
                   $phone_user = isset($_POST["txtPhone"]) ? $_POST["txtPhone"] : '';
                   $deparment_user = isset($_POST["txtDeparment"]) ? $_POST["txtDeparment"] : '';
                   $position_user = isset($_POST["txtPosition"]) ? $_POST["txtPosition"] : '';
-                  $checkbocActive = isset($_POST["checkbocActive"]) ? $_POST["checkbocActive"] : '';
+                  $checkboxSuperSu = isset($_POST["checkboxSuperSu"]) ? $_POST["checkboxSuperSu"] : '';
+                  $checkboxActive = isset($_POST["checkboxActive"]) ? $_POST["checkboxActive"] : '';
 
                   $fields = array(
                         "id_user" => $id_user,
@@ -92,10 +106,24 @@
                         "phone_user" => $phone_user,
                         "deparment_user" => $deparment_user,
                         "position_user" => $position_user,
-                        "checkbocActive" => $checkbocActive,
+                        "checkboxSuperSu" => $checkboxSuperSu,
+                        "checkboxActive" => $checkboxActive,
                   );
                   
                   echo UsersModel::saveUsersInfo($fields);
+                  
+            }
+
+            public function saveRolesinfo(){
+                  $id_user = isset($_POST["id_user"]) ? $_POST["id_user"] : '';
+                  $id_rol = isset($_POST["id_rol"]) ? $_POST["id_rol"] : '';
+
+                  $fields = array(
+                        "id_user" => $id_user,
+                        "id_rol" => $id_rol,
+                  );
+                  
+                  echo UsersModel::saveRolesinfo($fields);
                   
             }
 		
@@ -104,6 +132,11 @@
 if (isset($_GET['action']) && $_GET['action'] === 'tableUsers') {
       $tableUsers = new UsersController();
       $tableUsers->usersTable();
+}
+    
+if (isset($_GET['action']) && $_GET['action'] === 'tableRoles') {
+      $tableRoles = new UsersController();
+      $tableRoles->rolesTable();
 }
 
 if (isset($_POST['action']) && $_POST['action'] === 'infoUsers') {
@@ -114,4 +147,9 @@ if (isset($_POST['action']) && $_POST['action'] === 'infoUsers') {
 if (isset($_POST['action']) && $_POST['action'] === 'saveUsersInfo') {
       $saveUsersInfo = new UsersController();
       $saveUsersInfo->saveUsersInfo();
+}
+
+if (isset($_POST['action']) && $_POST['action'] === 'saveRolesinfo') {
+      $saveRolesinfo = new UsersController();
+      $saveRolesinfo->saveRolesinfo();
 }

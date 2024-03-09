@@ -37,7 +37,7 @@
     </div>
     <div class="col-md-2">
         <div class="input-group input-group-outline my-3">
-            <a class="btn btn-icon btn-2 btn-success" type="button" style="color :white" href="users?id=">
+            <a class="btn btn-icon btn-2 btn-success" type="button" style="color :white" href="users?edition=">
                 <span class="btn-inner--icon"><i class="fas fa-plus-square"></i> Create User</span>
             </a>
         </div>

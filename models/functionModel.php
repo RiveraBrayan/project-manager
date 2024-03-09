@@ -57,12 +57,17 @@
 				// Loop through each row in the result set
 				while ($row = $result->fetch_assoc()) {
 					// Extract data from the row
-					$id_pagina = $row["id_pagina"];
-					$nombre_pagina = $row["nombre_pagina"];
+					$id = $row["id"];
+					$value = $row["value"];
+					$name = $row["name"];
 			
 					// Add an option to the select list
-					$selectOptions .= "<option value='$id_pagina'>$nombre_pagina</option>";
+					$selectOptions .= "<option value='$value' data-id='$id'>$name</option>";
 				}
+
+				$arrayDatos = array('status' => 202, 'JsonData' => $selectOptions);
+			}else{
+				$arrayDatos = array('status' => 404, 'JsonData' => 'Error');
 			}
 
 			// Close the prepared statement
@@ -72,7 +77,9 @@
 			$db->close();
 
 			// Return the select options as a JSON-encoded string
-			return json_encode($selectOptions);
+		
+			header("Content-Type: application/json; charset=UTF-8");
+			echo json_encode($arrayDatos, JSON_PRETTY_PRINT);
 
 		}
 

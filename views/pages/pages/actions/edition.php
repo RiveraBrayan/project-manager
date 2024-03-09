@@ -1,7 +1,7 @@
 <?php
 
-    if(isset($_GET['id']) && $_GET['id'] != ''){
-        $id = $_GET['id'];
+    if(isset($_GET['edition']) && $_GET['edition'] != ''){
+        $id = $_GET['edition'];
         $tittle = "Edit Page";
 
     }else{

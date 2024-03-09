@@ -60,9 +60,8 @@
 			$where = $_POST['where'];
 			$whereTo = $_POST['whereTo'];
 
-			$data = FunctionModel::generateSelect($table,$select,$where,$whereTo);
+			echo FunctionModel::generateSelect($table,$select,$where,$whereTo);
 
-			echo json_decode($data);
 		}
 
 		static public function deleteRegister(){
