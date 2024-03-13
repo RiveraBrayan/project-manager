@@ -60,31 +60,34 @@ if (isset($_SESSION['userData']['su_user'])) {
 }
 
 $db = DBConexion::connection();
+$allowAccess = "";
 
-if ($_SESSION['userData']['su_user'] != 1) {
-
-	$namePage  = $page;
-	$idUser  = $_SESSION['userData']['id_user'];
-
-	$stmt = $db->prepare("CALL Permissions_validation(?, ?, ?, @countMatches)");
-	$stmt->bind_param("sii", $namePage, $idPage, $idUser);
-	$stmt->execute();
-	$stmt->close();
-
-	// Obtener el resultado del procedimiento almacenado
-	$result_permission = $db->query("SELECT @countMatches AS countMatches");
-	$data_permission = $result_permission->fetch_assoc();
-	$countMatches = $data_permission['countMatches'];
-
-	// Verificar el resultado
-	if ($countMatches > 0) {
-		$allowAccess = true;
+if(isset($_SESSION['userData']['su_user'])){
+	if ($_SESSION['userData']['su_user'] != 1) {
+	
+		$namePage  = $page;
+		$idUser  = $_SESSION['userData']['id_user'];
+	
+		$stmt = $db->prepare("CALL Permissions_validation(?, ?, ?, @countMatches)");
+		$stmt->bind_param("sii", $namePage, $idPage, $idUser);
+		$stmt->execute();
+		$stmt->close();
+	
+		// Obtener el resultado del procedimiento almacenado
+		$result_permission = $db->query("SELECT @countMatches AS countMatches");
+		$data_permission = $result_permission->fetch_assoc();
+		$countMatches = $data_permission['countMatches'];
+	
+		// Verificar el resultado
+		if ($countMatches > 0) {
+			$allowAccess = true;
+		} else {
+			$allowAccess = false;
+		}
+	
+		// Cerrar la conexión a la base de datos
+		$db->close();
 	} else {
-		$allowAccess = false;
+		$allowAccess = true;
 	}
-
-	// Cerrar la conexión a la base de datos
-	$db->close();
-} else {
-	$allowAccess = true;
 }

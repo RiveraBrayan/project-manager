@@ -4,28 +4,31 @@ template = function() {
         
         deleteRegister: function(id,table,suffix,page){
           fncSweetAlert('delete', 'Do you want to delete this record?', 'reload').then(resp=>{
-            var data = new FormData();
-            data.append("action", 'deleteRegister');
-            data.append("id", id);
-            data.append("table", table);
-            data.append("suffix", suffix);
-          
-            $.ajax({
-              url: "controllers/functionsController.php",
-              method: 'POST',
-              processData: false,
-              contentType: false,
-              data: data,
-              dataType: 'json',
-              success: function(response){
-                if(response){
-                  fncSweetAlert('success', 'Record Deleted Successfully!', 'reload');
-                }else{
-                  fncSweetAlert('error', 'Error in execution', 'reload');
+
+            if(resp){
+              var data = new FormData();
+              data.append("action", 'deleteRegister');
+              data.append("id", id);
+              data.append("table", table);
+              data.append("suffix", suffix);
+            
+              $.ajax({
+                url: "controllers/functionsController.php",
+                method: 'POST',
+                processData: false,
+                contentType: false,
+                data: data,
+                dataType: 'json',
+                success: function(response){
+                  if(response){
+                    fncSweetAlert('success', 'Record Deleted Successfully!', 'reload');
+                  }else{
+                    fncSweetAlert('error', 'Error in execution', 'reload');
+                  }
                 }
-              }
-          
-            })
+            
+              })
+            }
           })
         },
 

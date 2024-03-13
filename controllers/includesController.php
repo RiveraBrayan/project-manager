@@ -6,4 +6,8 @@
 		public function MenuSidebar(){
             return IncludesModel::MenuSidebar();
         }
+
+		public function userInfo($id_user){
+            return IncludesModel::userInfo($id_user);
+        }
     }

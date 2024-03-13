@@ -215,7 +215,7 @@
 
 				$stmt = $db->prepare($sql);
 
-				$stmt->bind_param("ssssssss", $username_user, $name_user, $email_user, $phone_user, $deparment_user, $position_user, $active_user, $su_user, $id_user);
+				$stmt->bind_param("sssssssss", $username_user, $name_user, $email_user, $phone_user, $deparment_user, $position_user, $active_user, $su_user, $id_user);
 
 				if ($stmt->execute()) {
 					$arrayDatos = array('status' => 202, 'message'=> 'User Updated');

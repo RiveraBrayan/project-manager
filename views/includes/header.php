@@ -5,6 +5,8 @@ require_once "controllers/includesController.php";
 
 $InfoUser = new IncludesController();
 $arrayNavbar = $InfoUser->MenuSidebar();
+$userInfo = $InfoUser->userInfo($_SESSION['userData']['id_user']);
+
 ?>
 
 <!DOCTYPE html>
@@ -42,6 +44,10 @@ $arrayNavbar = $InfoUser->MenuSidebar();
       height: 30px; /* Ajusta el tamaño según tus necesidades */
       object-fit: cover; /* Ajusta la forma de ajustar la imagen dentro del contenedor */
     }
+
+    hr{
+      background-color: gray !important;
+    }
   </style>
 </head>
 
@@ -51,7 +57,7 @@ $arrayNavbar = $InfoUser->MenuSidebar();
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-white opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
       <a class="navbar-brand m-0" href="home">
-        <img src="<?php echo $base_path; ?>/assets/img/logo-ct.png" class="navbar-brand-img h-100" alt="main_logo">
+        <img src="<?php echo $base_path; ?>/archives/profile_picture/1/DOC_65dc2cee98db5.gif" class="navbar-brand-img h-100" alt="main_logo">
         <span class="ms-1 font-weight-bold text-white">Gestor MVC</span>
       </a>
     </div>
@@ -159,10 +165,21 @@ $arrayNavbar = $InfoUser->MenuSidebar();
             </li>
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <a href="javascript:;" class="nav-link text-body p-0" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                <!-- <i class="fas fa-user"></i> -->
-                <img src="<?php echo $_SESSION['userData']['photo_user']  != '' ? './views/archives/profile_picture/'.$_SESSION['userData']['id_user'].'/'.$_SESSION['userData']['photo_user'] : './views/assets/img/userIcon.jpeg'?>" alt="" class="user-icon">
+                <img src="<?php echo $userInfo['photo_user']  != '' ? './views/archives/profile_picture/'.$_SESSION['userData']['id_user'].'/'.$userInfo['photo_user'] : './views/assets/img/userIcon.jpeg'?>" alt="" class="user-icon">
               </a>
-              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton">
+              <ul class="dropdown-menu  dropdown-menu-end  px-2 py-3 me-sm-n4" aria-labelledby="dropdownMenuButton" style="border: 1px solid #ccc; background-color: #f8f9fa;">
+                <li class="mb-2">
+                  <a class="dropdown-item border-radius-md" style="pointer-events: none !important; cursor: default;">
+                    <div class="d-flex py-1">
+                      <div class="d-flex flex-column justify-content-center">
+                        <h4 class="text-sm font-weight-normal mb-1">
+                          <span class="font-weight-bold"><?php echo $userInfo['name_user'] ?></span>
+                        </h4>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <hr>
                 <li class="mb-2">
                   <a class="dropdown-item border-radius-md" href="profile">
                     <div class="d-flex py-1">
